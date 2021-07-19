@@ -1,3 +1,15 @@
+def print_board(board):
+    print("-"*37)
+    for i, row in enumerate(board):
+        print(("|" + " {}   {}   {} |"*3).format(*[x if x != 0 else " " for x in row]))
+        if i == 8:
+            print("-"*37)
+        elif i % 3 == 2:
+            print("|" + "---,"*8 + "---|")
+        else:
+            print("|" + "   ,"*8 + "   |")
+
+
 def is_valid_move(grid, row, col, number):
     for i in range(9):
         if grid[row][i] == number:
@@ -49,11 +61,11 @@ grid = [
         [0, 0, 0, 2, 0, 0, 9, 0, 7],
         [6, 4, 0, 3, 0, 0, 0, 0, 0],]
 
+print("ORG:")
+print_board(grid)
+print()
+print("Solving...")
 if solve(grid, 0, 0):
-    for i in range(9):
-        for j in range(9):
-            print(grid[i][j], end=" ")
-        print()
-
+    print_board(grid)
 else:
     print("No Solution for this grid")
